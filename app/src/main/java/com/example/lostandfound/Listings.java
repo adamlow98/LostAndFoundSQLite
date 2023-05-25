@@ -22,8 +22,7 @@ public class Listings extends AppCompatActivity {
     FloatingActionButton floatingActionButton;
 
     ListingDatabase newDB;
-    ArrayList<String> id, name, phone, description, date, location;
-
+    ArrayList<String> id, name, phone, description, date, location, locationLat, locationLong;
     CustomAdapter customAdapter;
 
     @Override
@@ -37,11 +36,10 @@ public class Listings extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                sends user to the create activity on click
                 startActivity(new Intent(Listings.this, CreateListing.class));
             }
         });
-
-
 
         newDB = new ListingDatabase(Listings.this);
         id = new ArrayList<>();
@@ -50,10 +48,12 @@ public class Listings extends AppCompatActivity {
         description = new ArrayList<>();
         date = new ArrayList<>();
         location = new ArrayList<>();
+        locationLat = new ArrayList<>();
+        locationLong = new ArrayList<>();
 
         sendDataToArray();
 
-        customAdapter = new CustomAdapter(Listings.this, id, name, phone, description, date, location);
+        customAdapter = new CustomAdapter(Listings.this, id, name, phone, description, date, location, locationLat, locationLong);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(Listings.this));
 
@@ -72,8 +72,9 @@ public class Listings extends AppCompatActivity {
                 description.add(cursor.getString(3));
                 date.add(cursor.getString(4));
                 location.add(cursor.getString(5));
+                locationLat.add(cursor.getString(6));
+                locationLong.add(cursor.getString(7));
             }
-
         }
     }
 }

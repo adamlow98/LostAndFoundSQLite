@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Map;
 
 
 public class ListingView extends AppCompatActivity {
 
     TextView nameText, phoneText, descText, locText, dateText;
-    String id, name, phone, desc, loc, date;
+    String id, name, phone, desc, loc, date, locLat, locLong;
 
     Button deleteButton;
 
@@ -33,6 +34,7 @@ public class ListingView extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                calls the delete listing function from the database class on click
                 ListingDatabase newDB = new ListingDatabase(ListingView.this);
                 newDB.deleteListing(id);
                 startActivity(new Intent(ListingView.this, Listings.class));
@@ -40,16 +42,37 @@ public class ListingView extends AppCompatActivity {
 
         });
 
-
         getIntentData();
+
+        locText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                calls the delete listing function from the database class on click
+                Intent senderIntent = new Intent(ListingView.this, MapsActivity.class);
+                senderIntent.putExtra("LOC_NAME", desc);
+                senderIntent.putExtra("LOC_LAT", locLat);
+                senderIntent.putExtra("LOC_LONG", locLong);
+                startActivity(senderIntent);
+
+            }
+
+        });
+
+
+
+
+
     }
     void getIntentData(){
+//        grabs the listing data of the current listing from the database
         id = getIntent().getStringExtra("id");
         name = getIntent().getStringExtra("name");
         phone = getIntent().getStringExtra("phone");
         desc = getIntent().getStringExtra("description");
         loc = getIntent().getStringExtra("location");
         date = getIntent().getStringExtra("date");
+        locLat = getIntent().getStringExtra("locationLat");
+        locLong = getIntent().getStringExtra("locationLong");
 
         nameText.setText(name);
         phoneText.setText(phone);

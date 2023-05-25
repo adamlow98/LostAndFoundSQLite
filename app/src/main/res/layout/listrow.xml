@@ -30,6 +30,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/locationLatText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="invisible"
+            tools:layout_editor_absoluteX="12dp"
+            tools:layout_editor_absoluteY="12dp" />
+
+        <TextView
             android:id="@+id/idText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,5 +106,14 @@
             app:layout_constraintHorizontal_bias="0.823"
             app:layout_constraintStart_toEndOf="@+id/locText"
             app:layout_constraintTop_toBottomOf="@+id/descText" />
+
+        <TextView
+            android:id="@+id/locationLongText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="invisible"
+            tools:layout_editor_absoluteX="123dp"
+            tools:layout_editor_absoluteY="4dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

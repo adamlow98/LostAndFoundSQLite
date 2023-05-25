@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button createButton;
     Button showButton;
+    Button mapButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,18 +20,31 @@ public class MainActivity extends AppCompatActivity {
 
         createButton = findViewById(R.id.button);
         showButton = findViewById(R.id.button2);
+        mapButton = findViewById(R.id.button4);
+
 
 
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                sends user to the create listing activity
                 startActivity(new Intent(MainActivity.this, CreateListing.class));
             }
         });
         showButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                sends user to the listings activity
                 startActivity(new Intent(MainActivity.this, Listings.class));
+            }
+        });
+
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                sends user to the listings activity
+                startActivity(new Intent(MainActivity.this, MapsActivity2.class));
+
             }
         });
     }
